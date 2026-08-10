@@ -5,20 +5,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta property="og:title" content='new Date("wtf")'>
-  <meta property="og:description" content="How well do you know JavaScript's Date class?">
-  <meta property="og:url" content="https://jsdate.wtf">
+  <meta property="og:title" content='So You Think You Know Python Quiz'>
+  <meta property="og:description" content="How well do you know Python's quirks?">
+  <meta property="og:url" content="https://jduabe.dev/pyconjp-2026">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://jsdate.wtf/og.png">
+  <meta property="og:image" content="https://jduabe.dev/pyconjp-2026/og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:site_name" content="jsdate.wtf">
+  <meta property="og:site_name" content="So You Think You Know Python Quiz">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content='new Date("wtf")'>
-  <meta name="twitter:description" content="How well do you know JavaScript's Date class?">
-  <meta name="twitter:image" content="https://jsdate.wtf/og.png">
+  <meta name="twitter:title" content='So You Think You Know Python Quiz'>
+  <meta name="twitter:description" content="How well do you know Python's quirks?">
+  <meta name="twitter:image" content="https://jduabe.dev/pyconjp-2026/og.png">
 
-  <title>The JavaScript Date Quiz</title>
+  <title>So You Think You Know Python Quiz</title>
   <style>
     :root {
       --wong-orange: #E69F00;
@@ -45,15 +45,25 @@
       --gray-800: #1A1A1A;
       --gray-900: #0F0F0F;
 
+      --python-blue: #4B8BBE;
+      --python-blue-dark: #306998;
+      --python-blue-light: #6BA8D6;
+      --python-yellow: #FFD43B;
+      --python-yellow-light: #FFE873;
+      --python-yellow-dark: #E6BE2E;
+
       --white: #FFFFFF;
       --black: #000000;
     }
 
     :root {
-      --color-primary: var(--wong-orange);
-      --color-primary-hover: var(--wong-orange-dark);
-      --color-secondary: var(--slightly-lighter-wong-blue);
-      --color-secondary-hover: var(--wong-blue-dark);
+      --color-primary: var(--python-blue);
+      --color-primary-hover: var(--python-blue-dark);
+      --color-secondary: var(--python-yellow);
+      --color-secondary-hover: var(--python-yellow-dark);
+
+      --color-button-bg: var(--python-blue);
+      --color-button-bg-hover: var(--python-blue-light);
 
       --color-bg-dark: var(--gray-900);
       --color-bg-medium: var(--gray-800);
@@ -75,11 +85,11 @@
 
       --shadow-strength: 0.5;
 
-      --syntax-keyword: var(--wong-sky-blue);
+      --syntax-keyword: var(--python-blue);
       --syntax-string: var(--wong-bluish-green);
       --syntax-number: var(--wong-yellow);
       --syntax-operator: var(--gray-300);
-      --syntax-function: var(--wong-orange);
+      --syntax-function: var(--python-yellow);
       --syntax-comment: var(--gray-300);
 
       --spacing-xs: 4px;
@@ -118,10 +128,10 @@
     }
 
     [data-theme="light"] {
-      --color-primary: var(--wong-orange-dark);
-      --color-primary-hover: #B36A00;
-      --color-secondary: var(--slightly-lighter-wong-blue);
-      --color-secondary-hover: #004A7A;
+      --color-primary: var(--python-blue-dark);
+      --color-primary-hover: #244E73;
+      --color-secondary: var(--python-yellow);
+      --color-secondary-hover: var(--python-yellow-dark);
 
       --color-bg-dark: var(--grey-900);
       --color-bg-medium: #F7F7F7;
@@ -143,7 +153,7 @@
 
       --shadow-strength: 0.15;
 
-      --syntax-keyword: var(--wong-blue);
+      --syntax-keyword: var(--python-blue-dark);
       --syntax-string: var(--wong-bluish-green);
       --syntax-number: var(--wong-orange-dark);
       --syntax-operator: var(--gray-300);
@@ -266,7 +276,7 @@
     h1 {
       font-size: 4rem;
       color: var(--color-primary);
-      font-family: var(--font-mono);
+      font-family: var(--font-system);
       font-weight: bold;
     }
 
@@ -314,8 +324,13 @@
       box-shadow: inset 0 2px 4px rgba(0, 0, 0, calc(var(--shadow-strength) * 0.6));
       max-width: 600px;
       text-align: center;
-      text-wrap: nowrap;
+      white-space: pre;
       min-height: 4rem;
+    }
+
+    .code-block-container.multiline {
+      justify-content: flex-start;
+      text-align: left;
     }
 
     .syntax-keyword {
@@ -368,7 +383,7 @@
 
     .option.selected {
       border-color: var(--color-primary);
-      background-color: rgba(230, 159, 0, 0.15);
+      background-color: rgba(75, 139, 190, 0.15);
     }
 
     .option.correct {
@@ -451,8 +466,8 @@
 
 
     .button {
-      background-color: var(--color-primary);
-      color: var(--color-bg-dark);
+      background-color: var(--color-button-bg);
+      color: var(--gray-900);
       border: none;
       border-radius: var(--radius-lg);
       padding: var(--spacing-lg) var(--spacing-3xl);
@@ -463,7 +478,7 @@
     }
 
     .button:hover {
-      background-color: var(--color-primary-hover);
+      background-color: var(--color-button-bg-hover);
     }
 
 
@@ -483,6 +498,14 @@
       margin: var(--spacing-4xl) 0;
       color: var(--color-primary);
       font-weight: bold;
+    }
+
+    #resultMessage a {
+      color: var(--color-primary);
+    }
+
+    #resultMessage a:hover {
+      color: var(--color-primary-hover);
     }
 
     .share-box {
@@ -558,15 +581,6 @@
       background-color: var(--color-secondary-hover);
     }
 
-    .copy-button-main {
-      background-color: var(--color-bg-lighter);
-      color: var(--color-text-primary);
-      border: var(--border-medium) solid var(--color-border);
-    }
-
-    .copy-button-main:hover {
-      background-color: var(--color-border);
-    }
 
     .footer {
       display: flex;
@@ -759,20 +773,22 @@
     <div id="startScreen" class="start-screen">
       <div class="start-content">
         <header>
-          <h1 id="main-title">new Date("wtf")</h1>
-          <p class="subtitle">How well do you know JavaScript's Date class?</p>
+          <h1 id="main-title">So You Think You Know Python Quiz</h1>
+          <p class="subtitle">How well do you know Python?</p>
         </header>
 
         <p class="subsubtitle">
-          All questions verified using NodeJS 24.4.0 on
-          a MacBook Pro set to the BST timezone (UTC+1).
+          All questions verified using Python 3.14.
         </p>
         <button class="button" onclick="startQuiz()">Start Quiz</button>
       </div>
 
       <div class="footer">
         <p>
-          made with ❤️ by <a href="https://samwho.dev" target="_blank" rel="noopener">samwho</a>
+          Made with ❤️ by <a href="https://jduabe.dev" target="_blank" rel="noopener">j4ckofalltrades</a>
+        </p>
+        <p>
+          Inspired by <a href="https://jsdate.wtf" target="_blank" rel="noopener">jsdate.wtf</a> and <a href="https://mitsuhiko.github.io/fstrings-wtf/" target="_blank" rel="noopener">fstrings.wtf</a>
         </p>
       </div>
     </div>
@@ -818,7 +834,7 @@
           </svg>
           Share
         </button>
-        <button class="button icon-button copy-button-main" onclick="copyShareMessage()">
+        <button class="button icon-button" onclick="copyShareMessage()">
           <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
             <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
@@ -828,7 +844,10 @@
       </div>
       <div class="footer">
         <p>
-          made with ❤️ by <a href="https://samwho.dev" target="_blank" rel="noopener">samwho</a>
+          Made with ❤️ by <a href="https://jduabe.dev" target="_blank" rel="noopener">j4ckofalltrades</a>
+        </p>
+        <p>
+          Inspired by <a href="https://jsdate.wtf" target="_blank" rel="noopener">jsdate.wtf</a> and <a href="https://mitsuhiko.github.io/fstrings-wtf/" target="_blank" rel="noopener">fstrings.wtf</a>
         </p>
       </div>
     </div>
@@ -864,10 +883,6 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       setTheme(getTheme());
-      const mainTitle = document.getElementById('main-title');
-      if (mainTitle) {
-        mainTitle.innerHTML = highlightJS('new Date("wtf")');
-      }
 
       if (window.matchMedia) {
         const mediaQuery = window.matchMedia('(prefers-color-scheme: light)');
@@ -883,13 +898,13 @@
 
     setTheme(getTheme());
 
-    function highlightJS(code) {
+    function highlightPython(code) {
       const keywords = new Set([
-        'new', 'function', 'var', 'let', 'const', 'if', 'else', 'for', 'while', 'do',
-        'switch', 'case', 'break', 'continue', 'return', 'try', 'catch', 'finally',
-        'throw', 'typeof', 'instanceof', 'in', 'of', 'class', 'extends', 'super',
-        'static', 'import', 'export', 'from', 'default', 'async', 'await', 'yield',
-        'delete', 'void', 'this', 'null', 'undefined', 'true', 'false'
+        'False', 'None', 'True', 'and', 'as', 'assert', 'async', 'await',
+        'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except',
+        'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is',
+        'lambda', 'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 'try',
+        'while', 'with', 'yield', 'match', 'case'
       ]);
 
       const operators = new Set([
@@ -911,6 +926,16 @@
               i++;
             }
             tokens.push({ type: 'whitespace', value: whitespace });
+            continue;
+          }
+
+          if (char === '#') {
+            let comment = '';
+            while (i < code.length && code[i] !== '\n') {
+              comment += code[i];
+              i++;
+            }
+            tokens.push({ type: 'comment', value: comment });
             continue;
           }
 
@@ -955,14 +980,21 @@
               i++;
             }
 
-            const builtinConstructors = new Set(['Date', 'Array', 'Object', 'String', 'Number', 'Boolean', 'RegExp', 'Math', 'JSON']);
+            const builtins = new Set([
+              'print', 'len', 'range', 'str', 'int', 'float', 'list', 'dict',
+              'set', 'tuple', 'bool', 'type', 'object', 'super', 'isinstance',
+              'enumerate', 'zip', 'map', 'filter', 'sorted', 'reversed', 'sum',
+              'min', 'max', 'abs', 'round', 'open', 'input', 'repr', 'format',
+              'bytes', 'frozenset', 'hasattr', 'getattr', 'setattr', 'iter',
+              'next', 'any', 'all', 'id', 'hash'
+            ]);
 
             let j = i;
             while (j < code.length && /\s/.test(code[j])) j++;
 
             if (keywords.has(identifier)) {
               tokens.push({ type: 'keyword', value: identifier });
-            } else if (builtinConstructors.has(identifier)) {
+            } else if (builtins.has(identifier)) {
               tokens.push({ type: 'function', value: identifier });
             } else if (j < code.length && code[j] === '(') {
               tokens.push({ type: 'function', value: identifier });
@@ -998,6 +1030,8 @@
               return `<span class="syntax-function">${token.value}</span>`;
             case 'operator':
               return `<span class="syntax-operator">${token.value}</span>`;
+            case 'comment':
+              return `<span class="syntax-comment">${token.value}</span>`;
             default:
               return token.value;
           }
@@ -1010,345 +1044,151 @@
 
     const rawQuestions = [
       {
-        code: 'new Date("0")',
+        code: "False == False in [False]",
         options: [
-          '1970-01-01T00:00:00.000Z',
-          '2000-01-01T00:00:00.000Z',
-          'Invalid Date',
-          'Throws an error'
-        ],
-        correct: 1,
-        explanation: 'The string "0" is interpreted as the year 2000, not as a timestamp!'
-      },
-      {
-        code: 'new Date(0)',
-        options: [
-          '1970-01-01T00:00:00.000Z',
-          '2000-01-01T00:00:00.000Z',
-          'Invalid Date',
-          'Throws an error'
+          "True",
+          "False",
+                "TypeError",
+                "SyntaxError",
         ],
         correct: 0,
-        explanation: 'The <i>number</i> 0, as opposed to the string "0", is interpreted as milliseconds since the Unix epoch (Jan 1, 1970).'
+        explanation: "Comparison operators <i>chain</i>. This is <code>(False == False) and (False in [False])</code>, which is <code>True and True</code> &rarr; <code>True</code>. Neither <code>==</code> nor <code>in</code> runs \"first\"."
       },
       {
-        code: 'Date.parse(0) === Date.parse("0")',
+        code: "1 > 0 < 1",
         options: [
-          'true',
-          'false',
-          'Throws an error',
-          'undefined'
+          "True",
+          "False"
         ],
         correct: 0,
-        explanation: 'Both parse to 946684800000 milliseconds! Date.parse only operates on strings, so 0 is coerced to the string "0".'
-      },
-
-      {
-        code: 'new Date("not a date")',
-        options: [
-          'null',
-          'undefined',
-          'Invalid Date',
-          'Throws an error'
-        ],
-        correct: 2,
-        explanation: 'Invalid Date is still a Date object! It\'s not null or an error.'
+        explanation: "Another chained comparison: <code>(1 > 0) and (0 < 1)</code> &rarr; <code>True and True</code> &rarr; <code>True</code>. Handy for things like <code>0 &lt;= x &lt;= 100</code>."
       },
       {
-        code: 'new Date("not a date").getTime()',
+        code: "(1 > 0) < 1",
         options: [
-          '0',
-          'NaN',
-          'null',
-          'Throws an error'
+          "True",
+          "False"
         ],
         correct: 1,
-        explanation: 'Invalid Date objects return NaN for getTime(). This function returns the number of milliseconds since the Unix epoch for valid dates.'
+        explanation: "The parentheses break the chain. <code>(1 &gt; 0)</code> is <code>True</code>, and <code>True</code> equals <code>1</code>, so this is <code>1 &lt; 1</code> &rarr; <code>False</code>."
       },
       {
-        code: 'new Date("not a date").toISOString()',
+        code: "'something' is not None",
         options: [
-          '"Invalid Date"',
-          'null',
-          'NaN',
-          'Throws an error'
+          "True",
+          "False"
+        ],
+        correct: 0,
+        explanation: "<code>is not</code> is a single binary operator."
+      },
+      {
+        code: "'something' is (not None)",
+        options: [
+          "True",
+          "False"
+        ],
+        correct: 1,
+        explanation: "<code>not None</code> is evaluated first."
+      },
+      {
+        code: "not True == False",
+        options: [
+          "True",
+          "False",
+                "TypeError",
+                "SyntaxError"
+        ],
+        correct: 0,
+        explanation: "<code>==</code> is evaluated first, so this is expression is effectively <code>not (True == False)</code>."
+      },
+      {
+        code: "True == not False",
+        options: [
+          "True",
+          "False",
+          "TypeError",
+          "SyntaxError",
         ],
         correct: 3,
-        explanation: 'toISOString() throws a RangeError on Invalid Date objects.'
+        explanation: ""
       },
       {
-        code: 'new Date("not a date").toTimeString()',
+        code: "all([])",
         options: [
-          '"Invalid Date"',
-          '""',
-          'null',
-          'Throws an error'
+          "True",
+          "False"
         ],
         correct: 0,
-        explanation: 'toTimeString() returns the string "Invalid Date" for invalid dates. 🫠'
+        explanation: "<code>all()</code> returns <code>True</code> on an empty iterable."
       },
       {
-        code: 'new Date("1")',
+        code: "all([[]])",
         options: [
-          '1970-01-01T00:00:01.000Z',
-          '2001-01-01T00:00:00.000Z',
-          '0001-01-01T00:00:00.000Z',
-          'Invalid Date'
+          "True",
+          "False"
         ],
         correct: 1,
-        explanation: 'Unlike "0", "1" is interpreted as a month, and the year defaults to 2001 for some reason.'
+        explanation: "The iterable has exactly one element (<code>[]</code>), an empty list which is falsy.",
       },
       {
-        code: 'new Date("2")',
+        code: "all([[[]]])",
         options: [
-          '2002-01-01T00:00:00.000Z',
-          '2001-01-02T00:00:00.000Z',
-          '2001-02-01T00:00:00.000Z',
-          'Invalid Date'
-        ],
-        correct: 2,
-        explanation: '"2" is interpreted as February 2001 (month 2), as you might expect from the previous question.'
-      },
-      {
-        code: 'new Date("12")',
-        options: [
-          '2012-01-01T00:00:00.000Z',
-          '2001-01-12T00:00:00.000Z',
-          '2001-12-01T00:00:00.000Z',
-          'Invalid Date'
-        ],
-        correct: 2,
-        explanation: 'Also works for December.'
-      },
-      {
-        code: 'new Date("13")',
-        options: [
-          '2013-01-01T00:00:00.000Z',
-          '2001-01-13T00:00:00.000Z',
-          '2001-13-01T00:00:00.000Z',
-          'Invalid Date'
-        ],
-        correct: 3,
-        explanation: '"13" would be month 13, which doesn\'t exist, so it\'s Invalid Date.'
-      },
-      {
-        code: 'new Date("99") > new Date("100")',
-        options: [
-          'true',
-          'false',
-          'Throws an error',
-          'NaN'
+          "True",
+          "False"
         ],
         correct: 0,
-        explanation: '"99" is year 1999, while "100" is year 0100. 1999 > 0100! Date starts interpreting numbers as years starting at "32".'
+        explanation: "The iterable contains a nested list with exactly one element (although empty) <code>[[]]</code>, which is truthy."
       },
       {
-        code: 'new Date("49") > new Date("50")',
+        code: "True + True",
         options: [
-          'true',
-          'false',
-          'Throws an error',
-          'NaN'
-        ],
-        correct: 0,
-        explanation: 'And for some reason "32" to "49" is 2032-2049, while "50" onwards is 1950+. So 2049 > 1950!'
-      },
-      {
-        code: 'new Date("12.1")',
-        options: [
-          '2001-12-01T00:00:00.000Z',
-          '2001-01-01T00:00:00.000Z',
-          '2012-01-01T00:00:00.000Z',
-          'Invalid Date'
-        ],
-        correct: 0,
-        explanation: '"12.1" is interpreted as the date December 1st, and as before for dates with no year the default is 2001 because of course.'
-      },
-      {
-        code: 'new Date("12.0")',
-        options: [
-          '2012-01-01T00:00:00.000Z',
-          '2001-12-01T00:00:00.000Z',
-          '2001-01-12T00:00:00.000Z',
-          'Invalid Date'
-        ],
-        correct: 3,
-        explanation: 'The .0 is still interpreted as a day, and no month has a 0th day, so this is considered invalid.'
-      },
-      {
-        code: 'new Date("12.-1")',
-        options: [
-          '2001-12-01T00:00:00.000Z',
-          '2001-01-01T00:00:00.000Z',
-          '2012-01-01T00:00:00.000Z',
-          'Invalid Date'
-        ],
-        correct: 0,
-        explanation: 'The dash here is ignored, so this is interpreted the same as "12.1".'
-      },
-
-      {
-        code: 'new Date("perhaps 1")',
-        options: [
-          'Invalid Date',
-          '2001-01-01T00:00:00.000Z',
-          '1970-01-01T00:00:01.000Z',
-          'Throws an error'
+          "1",
+          "2",
+          "True",
+          "TypeError"
         ],
         correct: 1,
-        explanation: 'Leading text is always ignored! It finds the "1" and parses it as the month January.'
+        explanation: "<code>bool</code> is a subclass of <code>int</code>, with <code>True</code> having the underlying <code>int</code> value of <code>1</code>."
       },
       {
-        code: 'new Date("perhaps")',
+        code: "\"hello\" * False",
         options: [
-          'Invalid Date',
-          '2001-01-01T00:00:00.000Z',
-          '1970-01-01T00:00:01.000Z',
-          'Throws an error'
+          "''",
+          "'hello'",
+          "0",
+          "TypeError"
         ],
         correct: 0,
-        explanation: 'But you can\'t <i>just</i> have text! It needs a number to parse, so this is Invalid Date. It\'s equivalent to new Date("").'
+        explanation: "<code>False</code>'s underlying <code>int</code> value is <code>0</code>, and multiplying a string by <code>0</code> results in an empty string."
       },
       {
-        code: 'new Date("maybe 1")',
+        code: "round(0.5)",
         options: [
-          '2001-01-01T00:00:00.000Z',
-          '2001-04-30T23:00:00.000Z',
-          '2001-05-01T00:00:00.000Z',
-          'Invalid Date'
-        ],
-        correct: 1,
-        explanation: '"may" in "maybe" is parsed as the month May! And for some reason this expression cares about your local timezone, which happens to be BST for me right now.',
-      },
-      {
-        code: 'new Date("fourth of may 2010")',
-        options: [
-          'Invalid Date',
-          '2010-05-04T00:00:00.000Z',
-          '2010-04-30T23:00:00.000Z',
-          '2010-05-01T00:00:00.000Z'
-        ],
-        correct: 2,
-        explanation: '"fourth of" is ignored, this is just parsing "may 2010" and again local timezone is important.',
-      },
-      {
-        code: 'new Date("May 4 UTC")',
-        options: [
-          'Invalid Date',
-          '2001-05-04T00:00:00.000Z',
-          '2010-04-30T23:00:00.000Z',
-          '2010-05-01T00:00:00.000Z'
-        ],
-        correct: 1,
-        explanation: 'UTC is correctly parsed as a timezone.',
-      },
-      {
-        code: 'new Date("May 4 UTC+1")',
-        options: [
-          'Invalid Date',
-          '2001-05-04T00:00:00.000Z',
-          '2001-05-03T23:00:00.000Z',
-          '2010-05-01T00:00:00.000Z'
-        ],
-        correct: 2,
-        explanation: 'You can add modifiers to timezones and it works as you would expect.',
-      },
-      {
-        code: 'new Date("May 4 UTC+1:59")',
-        options: [
-          'Invalid Date',
-          '2001-05-04T00:00:00.000Z',
-          '2001-05-03T22:01:00.000Z',
-          'Throws an error'
-        ],
-        correct: 2,
-        explanation: 'It also supports minutes!',
-      },
-      {
-        code: 'new Date("May 4 UTC+1:60")',
-        options: [
-          'Invalid Date',
-          '2001-05-04T00:00:00.000Z',
-          '2001-05-03T22:00:00.000Z',
-          '1960-05-03T23:00:00.000Z'
-        ],
-        correct: 3,
-        explanation: 'Until it doesn\'t! 60 is being parsed as the year here, UTC+1 is the timezone.',
-      },
-      {
-        code: 'new Date("1990 2010")',
-        options: [
-          '1990-01-01T00:00:00.000Z',
-          '2010-01-01T00:00:00.000Z',
-          '2000-01-01T00:00:00.000Z',
-          'Invalid Date'
-        ],
-        correct: 3,
-        explanation: 'No tricks here, just a plain ol\' Invalid Date.'
-      },
-      {
-        code: 'new Date("1990 (2010)")',
-        options: [
-          '1990-01-01T00:00:00.000Z',
-          '2010-01-01T00:00:00.000Z',
-          '2000-01-01T00:00:00.000Z',
-          'Invalid Date'
+          "0",
+          "1",
+          "0.5",
+          "2"
         ],
         correct: 0,
-        explanation: 'For some reason, parenthesised text is ignored.'
+        explanation: "Python uses banker's rounding (round half to even), so <code>0.5</code> rounds down to the nearest even integer, <code>0</code>."
       },
       {
-        code: 'new Date("(1990) 2010")',
+        code: ">>> a = 2, 1, 3\n>>> sorted(a) == sorted(a)\nTrue\n>>> reversed(a) == reversed(a)",
         options: [
-          '1990-01-01T00:00:00.000Z',
-          '2010-01-01T00:00:00.000Z',
-          '2000-01-01T00:00:00.000Z',
-          'Invalid Date'
+          "True",
+          "False",
+          "SyntaxError",
+          "TypeError"
         ],
         correct: 1,
-        explanation: 'No matter where it is.'
-      },
-      {
-        code: 'new Date(-[])',
-        options: [
-          '1970-01-01T00:00:00.000Z',
-          '2000-01-01T00:00:00.000Z',
-          'Throws an error',
-          'Invalid Date'
-        ],
-        correct: 0,
-        explanation: 'I couldn\'t resist. -[] is coerced to 0, which is interpreted as milliseconds since the Unix epoch (Jan 1, 1970).'
+        explanation: "reversed() returns a one-shot iterator object, and two separate iterators are never equal to each other, so this is False."
       }
     ];
 
-    function shuffleArray(array) {
-      const shuffled = [...array];
-      for (let i = shuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-      }
-      return shuffled;
-    }
-
-    const questions = rawQuestions.map(question => {
-      const optionsWithIndices = question.options.map((option, index) => ({
-        text: option,
-        originalIndex: index
-      }));
-
-      const shuffledOptions = shuffleArray(optionsWithIndices);
-
-      const newCorrectIndex = shuffledOptions.findIndex(
-        option => option.originalIndex === question.correct
-      );
-
-      return {
-        ...question,
-        options: shuffledOptions.map(option => option.text),
-        correct: newCorrectIndex,
-        highlightedCode: highlightJS(question.code)
-      };
-    });
+    const questions = rawQuestions.map(question => ({
+      ...question,
+      highlightedCode: highlightPython(question.code)
+    }));
 
     let currentQuestionIndex = 0;
     let score = 0;
@@ -1366,6 +1206,8 @@
       const question = questions[currentQuestionIndex];
       document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
       document.getElementById('codeBlock').innerHTML = question.highlightedCode;
+      document.querySelector('.code-block-container')
+        .classList.toggle('multiline', question.code.includes('\n'));
 
       const optionsContainer = document.getElementById('options');
       optionsContainer.innerHTML = '';
@@ -1396,7 +1238,9 @@
       const explanation = document.getElementById('explanation');
       explanation.classList.remove('correct', 'incorrect');
       explanation.style.visibility = 'hidden';
-      document.getElementById('nextButton').classList.add('hidden');
+      const nextButton = document.getElementById('nextButton');
+      nextButton.textContent = currentQuestionIndex === questions.length - 1 ? 'Finish' : 'Next Question';
+      nextButton.classList.add('hidden');
 
       answered = false;
       chosenAnswer = null;
@@ -1447,28 +1291,33 @@
       document.getElementById('correctCount').textContent = score;
       document.getElementById('totalCount').textContent = questions.length;
 
-      const percentage = Math.round((score / questions.length) * 100);
-      let message = '';
+      const zenOfPython = [
+        'Beautiful is better than ugly.',
+        'Explicit is better than implicit.',
+        'Simple is better than complex.',
+        'Complex is better than complicated.',
+        'Flat is better than nested.',
+        'Sparse is better than dense.',
+        'Readability counts.',
+        'Special cases aren\'t special enough to break the rules.',
+        'Although practicality beats purity.',
+        'Errors should never pass silently.',
+        'Unless explicitly silenced.',
+        'In the face of ambiguity, refuse the temptation to guess.',
+        'There should be one-- and preferably only one --obvious way to do it.',
+        'Although that way may not be obvious at first unless you\'re Dutch.',
+        'Now is better than never.',
+        'Although never is often better than *right* now.',
+        'If the implementation is hard to explain, it\'s a bad idea.',
+        'If the implementation is easy to explain, it may be a good idea.',
+        'Namespaces are one honking great idea -- let\'s do more of those!'
+      ];
+      const aphorism = zenOfPython[Math.floor(Math.random() * zenOfPython.length)];
+      const message = `Here's a random <a href="https://peps.python.org/pep-0020/" target="_blank" rel="noopener">Zen of Python</a> aphorism:<br><br><i>"${aphorism}"</i>`;
 
-      if (percentage > 100) {
-        message = 'You figured out how to hack the score, nice work!';
-      } else if (percentage === 100) {
-        message = 'Congrats, you cheated!';
-      } else if (percentage >= 80) {
-        message = 'It\'s concerning how well you know the JavaScript Date class.';
-      } else if (percentage >= 60) {
-        message = 'Good score! Now you just have to ask yourself why you know this much about the JavaScript Date class.';
-      } else if (percentage >= 25) {
-        message = 'It\'s okay, Temporal is coming soon anyway.';
-      } else if (percentage >= 0) {
-        message = 'You would have scored higher by guessing at random.';
-      } else if (percentage < 0) {
-        message = 'The smart people that figured out how to hack the score gave themselves values above 0, doofus.';
-      }
+      document.getElementById('resultMessage').innerHTML = message;
 
-      document.getElementById('resultMessage').textContent = message;
-
-      const shareText = `I scored ${score}/${questions.length} on https://jsdate.wtf and all I got was this lousy text to share on social media.`;
+      const shareText = `I scored ${score}/${questions.length} on the "So You Think You Python?" quiz at PyCon JP. #pyconjp2026`;
       document.getElementById('shareMessage').textContent = shareText;
 
       window.history.replaceState({}, '', window.location.pathname);
