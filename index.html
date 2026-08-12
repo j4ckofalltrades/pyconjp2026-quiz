@@ -778,7 +778,7 @@
         </header>
 
         <p class="subsubtitle">
-          All questions verified on Python 3.14.
+          All questions verified on Python 3.14
         </p>
         <button class="button" onclick="startQuiz()">Start Quiz</button>
       </div>
@@ -1328,9 +1328,8 @@
         'Namespaces are one honking great idea -- let\'s do more of those!'
       ];
       const aphorism = zenOfPython[Math.floor(Math.random() * zenOfPython.length)];
-      const message = `Here's a random <a href="https://peps.python.org/pep-0020/" target="_blank" rel="noopener">Zen of Python</a> aphorism:<br><br><i>"${aphorism}"</i>`;
 
-      document.getElementById('resultMessage').innerHTML = message;
+      document.getElementById('resultMessage').innerHTML = `<i>"${aphorism}"</i>`;
 
       const shareText = `I scored ${score}/${questions.length} on the So You Think You Python Quiz at PyCon JP. #pyconjp2026`;
       document.getElementById('shareMessage').textContent = shareText;
