@@ -1166,7 +1166,7 @@
         explanation: "Per IEEE 754, <code>NaN</code> is never equal to anything, including itself."
       },
       {
-        code: "def x(y=[]):\n    y.append(1)\n    return y\n\nx()\nx()",
+        code: ">>> def x(y=[]):\n...    y.append(1)\n...    return y\n\n>>> x()\n>>> x()",
         options: [
           "[1]",
           "[1, 1]",
@@ -1177,7 +1177,7 @@
         explanation: "Python’s default arguments are evaluated <i>once</i> when the function is defined, not each time the function is called."
       },
       {
-        code: ">>> d = {True: 'a', 1: 'b', 1.0: 'c'}\n>>> len(d)",
+        code: ">>> d = {\n...     True: 'a',\n...     1: 'b',\n...     1.0: 'c'\n... }\n>>> len(d)",
         options: [
           "1",
           "2",
@@ -1331,7 +1331,7 @@
 
       document.getElementById('resultMessage').innerHTML = `<i>"${aphorism}"</i>`;
 
-      const shareText = `I scored ${score}/${questions.length} on the So You Think You Python Quiz at PyCon JP. #pyconjp2026`;
+      const shareText = `I scored ${score}/${questions.length} on https://jduabe.dev/pyconjp2026-quiz and all I got was this lousy text to share on social media. #pyconjp2026 #pyconjpB`;
       document.getElementById('shareMessage').textContent = shareText;
 
       window.history.replaceState({}, '', window.location.pathname);
